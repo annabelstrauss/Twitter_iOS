@@ -16,7 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        // MARK: TODO: Check for logged in user
+        //Check for logged in user for persisted user
+        if User.current != nil {
+            // Load and show the login view controller
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let tweetsNavigationController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
+            window?.rootViewController = tweetsNavigationController
+        } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+            window?.rootViewController = loginViewController
+        }
         
         NotificationCenter.default.addObserver(forName: Notification.Name("didLogout"), object: nil, queue: OperationQueue.main) { (Notification) in
             print("Logout notification received")
