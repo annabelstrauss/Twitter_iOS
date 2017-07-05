@@ -80,6 +80,14 @@ class TweetCell: UITableViewCell {
             retweetButton.isSelected = tweet.retweeted
             tweet.retweetCount -= 1
             retweetCountLabel.text = String(tweet.retweetCount)
+            
+            APIManager.shared.unretweet(tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error un-retweeting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully un-retweeted the following Tweet: \n\(tweet.text)")
+                }
+            }
         }//close else if
     }
     
