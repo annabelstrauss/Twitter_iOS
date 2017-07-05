@@ -109,7 +109,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="QnL-50-rgH">
-                                                    <rect key="frame" x="66" y="64" width="293" height="30"/>
+                                                    <rect key="frame" x="66" y="64" width="285" height="30"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b53-1t-tDh">
                                                             <rect key="frame" x="0.0" y="0.0" width="38" height="30"/>
@@ -130,7 +130,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AYr-cI-cCG">
-                                                            <rect key="frame" x="127.5" y="0.0" width="38" height="30"/>
+                                                            <rect key="frame" x="123.5" y="0.0" width="38" height="30"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h73-68-kWC">
                                                                     <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -149,7 +149,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l8f-Y8-zW4">
-                                                            <rect key="frame" x="255" y="0.0" width="38" height="30"/>
+                                                            <rect key="frame" x="247" y="0.0" width="38" height="30"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wpu-Tl-yDG">
                                                                     <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -184,7 +184,7 @@
                                                 <constraint firstItem="2jT-QW-pcq" firstAttribute="top" secondItem="zd2-Er-659" secondAttribute="top" constant="8" id="ZP6-zg-RV7"/>
                                                 <constraint firstItem="LTq-f9-DV2" firstAttribute="centerY" secondItem="epC-Fs-Q5Z" secondAttribute="centerY" id="ej6-4M-vRW"/>
                                                 <constraint firstItem="hxj-KB-JpU" firstAttribute="leading" secondItem="epC-Fs-Q5Z" secondAttribute="trailing" constant="8" id="f1I-Af-TSw"/>
-                                                <constraint firstAttribute="trailing" secondItem="QnL-50-rgH" secondAttribute="trailing" constant="16" id="lbl-u6-Lim"/>
+                                                <constraint firstAttribute="trailing" secondItem="QnL-50-rgH" secondAttribute="trailing" constant="24" id="lbl-u6-Lim"/>
                                                 <constraint firstItem="epC-Fs-Q5Z" firstAttribute="top" secondItem="2jT-QW-pcq" secondAttribute="top" id="qZu-66-xgQ"/>
                                                 <constraint firstItem="tQL-QM-OtZ" firstAttribute="top" secondItem="epC-Fs-Q5Z" secondAttribute="bottom" constant="8" id="zrU-wC-3se"/>
                                             </constraints>

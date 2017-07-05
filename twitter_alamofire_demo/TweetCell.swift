@@ -38,7 +38,6 @@ class TweetCell: UITableViewCell {
             
             retweetCountLabel.text = String(tweet.retweetCount)
             likeCountLabel.text = String(tweet.favoriteCount)
-            print(tweet.id)
         }
     }
     
@@ -58,55 +57,70 @@ class TweetCell: UITableViewCell {
     
     
     @IBAction func didTapRetweet(_ sender: Any) {
+        
+        //Retweets the tweet
         if retweetButton.isSelected == false {
             tweet.retweeted = true
             retweetButton.isSelected = tweet.retweeted
             tweet.retweetCount += 1
             retweetCountLabel.text = String(tweet.retweetCount)
-        }
+            
+            APIManager.shared.retweet(tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error retweeting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully retweeted the following Tweet: \n\(tweet.text)")
+                }
+            }
+        }//close if
+            
+        //Un-retweets the tweet
         else if retweetButton.isSelected == true {
             tweet.retweeted = false
             retweetButton.isSelected = tweet.retweeted
             tweet.retweetCount -= 1
             retweetCountLabel.text = String(tweet.retweetCount)
-        }
+        }//close else if
     }
     
     
     @IBAction func didTapLike(_ sender: Any) {
+        
+        //Adds a like
         if likeButton.isSelected == false {
             tweet.favorited = true
             likeButton.isSelected = tweet.favorited!
             tweet.favoriteCount += 1
             likeCountLabel.text = String(tweet.favoriteCount)
             
-//            favorite(tweet, completion: { (tweet: Tweet?, error: Error?) in
-//                if let error = error{
-//                    print("there was an error")
-//                }
-//            })
-        }
+            APIManager.shared.favorite(tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error favoriting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully favorited the following Tweet: \n\(tweet.text)")
+                }
+            }
+        }//close if
+         
+        //Removes a like
         else if likeButton.isSelected == true {
             tweet.favorited = false
             likeButton.isSelected = tweet.favorited!
             tweet.favoriteCount -= 1
             likeCountLabel.text = String(tweet.favoriteCount)
-        }
-    }
+            
+            APIManager.shared.unfavorite(tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error un-favoriting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully un-favorited the following Tweet: \n\(tweet.text)")
+                }
+            }
+        }//close else if
+        
+    }//close didTapLike
     
-//    func favorite(_ tweet: Tweet, completion: @escaping (Tweet?, Error?) -> ()) {
-//        let urlString = "https://api.twitter.com/1.1/favorites/create.json"
-//        let parameters = ["id": tweet.id]
-//        request(urlString, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { (response) in
-//            if response.result.isSuccess,
-//                let tweetDictionary = response.result.value as? [String: Any] {
-//                let tweet = Tweet(dictionary: tweetDictionary)
-//                completion(tweet, nil)
-//            } else {
-//                completion(nil, response.result.error)
-//            }
-//        }
-//    }
+    
     
     
     
