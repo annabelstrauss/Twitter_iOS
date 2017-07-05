@@ -38,6 +38,7 @@ class TweetCell: UITableViewCell {
             
             retweetCountLabel.text = String(tweet.retweetCount)
             likeCountLabel.text = String(tweet.favoriteCount)
+            print(tweet.id)
         }
     }
     
@@ -78,6 +79,12 @@ class TweetCell: UITableViewCell {
             likeButton.isSelected = tweet.favorited!
             tweet.favoriteCount += 1
             likeCountLabel.text = String(tweet.favoriteCount)
+            
+//            favorite(tweet, completion: { (tweet: Tweet?, error: Error?) in
+//                if let error = error{
+//                    print("there was an error")
+//                }
+//            })
         }
         else if likeButton.isSelected == true {
             tweet.favorited = false
@@ -87,6 +94,19 @@ class TweetCell: UITableViewCell {
         }
     }
     
+//    func favorite(_ tweet: Tweet, completion: @escaping (Tweet?, Error?) -> ()) {
+//        let urlString = "https://api.twitter.com/1.1/favorites/create.json"
+//        let parameters = ["id": tweet.id]
+//        request(urlString, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { (response) in
+//            if response.result.isSuccess,
+//                let tweetDictionary = response.result.value as? [String: Any] {
+//                let tweet = Tweet(dictionary: tweetDictionary)
+//                completion(tweet, nil)
+//            } else {
+//                completion(nil, response.result.error)
+//            }
+//        }
+//    }
     
     
     

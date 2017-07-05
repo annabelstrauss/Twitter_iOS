@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate {
     
     var tweets: [Tweet] = []
     var refreshControl: UIRefreshControl!
@@ -83,6 +83,16 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     func refreshControlAction(_ refreshControl: UIRefreshControl) {
         activityIndicator.startAnimating() //starts the spinny wheel in center of screen
         fetchTweets()
+    }
+    
+    func didPostTweet(post: Tweet) {
+        tweets.insert(post, at: 0)
+        tableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let composeViewController = segue.destination as! ComposeViewController //tell it its destination
+        composeViewController.delegate = self
     }
     
     
