@@ -77,6 +77,7 @@ class APIManager: SessionManager {
         }
     }
     
+    
     // MARK: TODO: Get home timeline / news feed
     func getHomeTimeLine(completion: @escaping ([Tweet]?, Error?) -> ()) {
 

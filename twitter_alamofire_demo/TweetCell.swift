@@ -9,10 +9,11 @@
 import UIKit
 import Alamofire
 import AlamofireImage
+import TTTAttributedLabel
 
-class TweetCell: UITableViewCell {
+class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
     
-    @IBOutlet weak var tweetTextLabel: UILabel!
+    @IBOutlet weak var tweetTextLabel: TTTAttributedLabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -44,6 +45,13 @@ class TweetCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        tweetTextLabel.enabledTextCheckingTypes = NSTextCheckingAllTypes
+        tweetTextLabel.delegate = self
+    }
+    
+    public func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
+        //let url = NSURL(url)!
+        UIApplication.shared.openURL(url)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

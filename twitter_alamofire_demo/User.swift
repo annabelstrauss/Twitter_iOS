@@ -66,6 +66,12 @@ class User {
 
     }
     
+    class func refreshCurrentInstance() {
+        APIManager.shared.getCurrentAccount { (user: User?, error: Error?) in
+            User.current = user
+        }
+    }
+    
     
     
     
