@@ -24,6 +24,8 @@ class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
     @IBOutlet weak var replyCountLabel: UILabel!
     @IBOutlet weak var retweetCountLabel: UILabel!
     @IBOutlet weak var likeCountLabel: UILabel!
+    @IBOutlet weak var mediaImageView: UIImageView!
+    @IBOutlet weak var topStackConstraint: NSLayoutConstraint!
     
     var tweet: Tweet! {
         didSet {
@@ -41,7 +43,21 @@ class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
             
             retweetCountLabel.text = String(tweet.retweetCount)
             likeCountLabel.text = String(tweet.favoriteCount)
-        }
+            
+            //if there's image media in the tweet, display it
+            if let url = tweet.displayURL {
+                    mediaImageView.isHidden = false
+                    topStackConstraint.constant = 150
+                    mediaImageView.af_setImage(withURL: url)
+            }
+            //if there's no image media, hide the image view and shrink the constraint
+            else {
+                mediaImageView.isHidden = true
+                topStackConstraint.constant = 12
+            }
+            
+            
+        }//close didSet
     }
     
     override func awakeFromNib() {
