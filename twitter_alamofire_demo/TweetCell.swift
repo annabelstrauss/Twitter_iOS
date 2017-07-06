@@ -27,6 +27,8 @@ class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
     
     var tweet: Tweet! {
         didSet {
+            
+            //sets contexts of labels and image view
             tweetTextLabel.text = tweet.text
             nameLabel.text = tweet.user.name
             usernameLabel.text = tweet.user.screenName
@@ -44,9 +46,13 @@ class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        // for attributed text
         tweetTextLabel.enabledTextCheckingTypes = NSTextCheckingAllTypes
         tweetTextLabel.delegate = self
+        
+        //make profile pic circular
+        profilePicImageView.layer.cornerRadius = profilePicImageView.frame.size.width / 2;
+        profilePicImageView.clipsToBounds = true;
     }
     
     public func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {

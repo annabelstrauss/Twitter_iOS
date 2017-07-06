@@ -41,6 +41,10 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         
         //this is for keyboard auto layout
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        //make profile pic circular
+        profilePicImageView.layer.cornerRadius = profilePicImageView.frame.size.width / 2;
+        profilePicImageView.clipsToBounds = true;
     
     }
     

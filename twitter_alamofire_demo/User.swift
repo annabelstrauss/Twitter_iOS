@@ -12,8 +12,8 @@ class User {
     
     var name: String?
     var screenName: String?
-    var followersCount: Int? //number of people FOLLOWING the current user
-    var friendsCount: Int? //number of people that the current user FOLLOWS
+    var followersCount: Int //number of people FOLLOWING the current user
+    var friendsCount: Int //number of people that the current user FOLLOWS
     var id: Int64
     var profilePicString: String?
     var profilePicURL: URL?
@@ -57,8 +57,8 @@ class User {
         
         name = dictionary["name"] as? String
         screenName = dictionary["screen_name"] as? String
-        followersCount = dictionary["followers_count"] as? Int
-        friendsCount = dictionary["friends_count"] as? Int
+        followersCount = dictionary["followers_count"] as! Int
+        friendsCount = dictionary["friends_count"] as! Int
         id = dictionary["id"] as! Int64
         profilePicString = dictionary["profile_image_url_https"] as? String
         profilePicURL = URL(string: profilePicString!)

@@ -197,6 +197,34 @@ class APIManager: SessionManager {
     }//close composeTweet
     
     // MARK: TODO: Get User Timeline (profile page)
+    func getUserTweets(completion: @escaping ([Tweet]?, Error?) -> ()) {
+        
+        let baseURL = "https://api.twitter.com/1.1/statuses/user_timeline.json?"
+        let userNameString = "screen_name=" + (User.current?.screenName)!
+        print(userNameString)
+        let countString = "&count=20"
+        let fullString = baseURL + userNameString + countString
+        
+        request(URL(string: fullString)!, method: .get)
+            .validate()
+            .responseJSON { (response) in
+                guard response.result.isSuccess else {
+                    completion(nil, response.result.error)
+                    return
+                }
+                guard let tweetDictionaries = response.result.value as? [[String: Any]] else {
+                    print("Failed to parse tweets")
+                    let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey : "Failed to parse tweets"])
+                    completion(nil, error)
+                    return
+                }
+                
+                let tweets = tweetDictionaries.flatMap({ (dictionary) -> Tweet in
+                    Tweet(dictionary: dictionary)
+                })
+                completion(tweets, nil)
+        }
+    }//close getUserTweets
     
     
     //--------------------------------------------------------------------------------//

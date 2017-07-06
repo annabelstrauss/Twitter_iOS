@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if User.current != nil {
             // Load and show the login view controller
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let tweetsNavigationController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
-            window?.rootViewController = tweetsNavigationController
+            let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController")
+            window?.rootViewController = tabBarController
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")

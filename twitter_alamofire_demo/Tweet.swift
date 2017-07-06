@@ -19,6 +19,7 @@ class Tweet {
     var retweeted: Bool // Configure retweet button
     var user: User // Contains name, screenname, etc. of tweet author
     var createdAtString: String // Display date
+    var retweetedByUser: User?  // user who retweeted if tweet is retweet
     
     // MARK: - Create initializer with dictionary
     init(dictionary: [String: Any]) {
