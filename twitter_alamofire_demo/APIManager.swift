@@ -83,15 +83,15 @@ class APIManager: SessionManager {
 
         // This uses tweets from disk to avoid hitting rate limit. Comment out if you want fresh
         // tweets,
-        if let data = UserDefaults.standard.object(forKey: "hometimeline_tweets") as? Data {
-            let tweetDictionaries = NSKeyedUnarchiver.unarchiveObject(with: data) as! [[String: Any]]
-            let tweets = tweetDictionaries.flatMap({ (dictionary) -> Tweet in
-                Tweet(dictionary: dictionary)
-            })
-            
-            completion(tweets, nil)
-            return
-        }
+//        if let data = UserDefaults.standard.object(forKey: "hometimeline_tweets") as? Data {
+//            let tweetDictionaries = NSKeyedUnarchiver.unarchiveObject(with: data) as! [[String: Any]]
+//            let tweets = tweetDictionaries.flatMap({ (dictionary) -> Tweet in
+//                Tweet(dictionary: dictionary)
+//            })
+//            
+//            completion(tweets, nil)
+//            return
+//        }
         
         
         request(URL(string: "https://api.twitter.com/1.1/statuses/home_timeline.json")!, method: .get)
@@ -198,12 +198,6 @@ class APIManager: SessionManager {
     
     // MARK: TODO: Get User Timeline (profile page)
     func getUserTweets(_ user: User, completion: @escaping ([Tweet]?, Error?) -> ()) {
-        
-//        let baseURL = "https://api.twitter.com/1.1/statuses/user_timeline.json?"
-//        let userNameString = "screen_name=" + (User.current?.screenName)!
-//        print(userNameString)
-//        let countString = "&count=20"
-//        let fullString = baseURL + userNameString + countString
         
         let parameters = ["screen_name": user.screenName!]
         print("😄")

@@ -234,14 +234,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home Timeline" id="9Zi-uW-GTS">
-                        <barButtonItem key="leftBarButtonItem" image="edit-icon" id="5uh-Bf-CI8">
+                        <barButtonItem key="rightBarButtonItem" image="edit-icon" id="5uh-Bf-CI8">
                             <connections>
                                 <segue destination="UIP-Rd-66C" kind="presentation" identifier="composeSegue" id="zab-fy-WSi"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Logout" id="hz2-ji-ft0">
-                            <connections>
-                                <action selector="didTapLogout:" destination="5YO-Vh-39k" id="fM7-h5-mq1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -418,6 +413,11 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Edg-qu-GFx">
+                                <rect key="frame" x="169" y="283" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qeM-8a-jqr">
                                 <rect key="frame" x="0.0" y="-65" width="375" height="280"/>
                                 <subviews>
@@ -435,19 +435,19 @@
                                         <rect key="frame" x="20" y="178.5" width="339" height="81"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekQ-w1-92a">
-                                                <rect key="frame" x="0.0" y="0.5" width="70" height="27"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="70" height="27"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@uesrname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4tw-y1-CBX">
-                                                <rect key="frame" x="0.0" y="27.5" width="96.5" height="27"/>
+                                                <rect key="frame" x="0.0" y="27" width="96.5" height="27"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="UDZ-K9-X4Q">
-                                                <rect key="frame" x="0.0" y="54.5" width="227" height="27"/>
+                                                <rect key="frame" x="0.0" y="54" width="227" height="27"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cHk-Lk-Y6d">
                                                         <rect key="frame" x="0.0" y="0.0" width="97" height="27"/>
@@ -516,8 +516,15 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" id="bnX-yS-9Rr"/>
+                    <navigationItem key="navigationItem" id="bnX-yS-9Rr">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="iby-7j-WRm">
+                            <connections>
+                                <action selector="didTapLogout:" destination="CSr-oW-smw" id="aLu-Zr-Qaf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="Edg-qu-GFx" id="weJ-X8-Pg5"/>
                         <outlet property="backgroundPicImageView" destination="xKP-YL-EIy" id="znx-6c-RT7"/>
                         <outlet property="followersCountLabel" destination="IbW-cr-O0U" id="TqF-Qp-ghV"/>
                         <outlet property="followingCountLabel" destination="ySY-YE-5lk" id="SZd-c1-SWo"/>
