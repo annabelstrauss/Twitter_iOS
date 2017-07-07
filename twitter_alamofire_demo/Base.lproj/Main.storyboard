@@ -8,6 +8,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -600,10 +601,17 @@
                                     <action selector="didTapPost:" destination="UIP-Rd-66C" eventType="touchUpInside" id="PIc-9T-QFM"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="140" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEA-U4-TVU">
+                                <rect key="frame" x="247.5" y="378" width="25.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="z3N-Sd-A7W" firstAttribute="top" secondItem="Nrr-gQ-ZKT" secondAttribute="bottom" constant="8" id="1r1-6g-Gmm"/>
+                            <constraint firstItem="nEA-U4-TVU" firstAttribute="leading" secondItem="dqe-zP-kBm" secondAttribute="leadingMargin" constant="231.5" id="4Mj-av-Ad8"/>
                             <constraint firstItem="MS4-bc-5TD" firstAttribute="trailing" secondItem="PfC-Cg-8jv" secondAttribute="trailing" id="9CW-6j-BU7"/>
                             <constraint firstItem="QsI-1F-xaq" firstAttribute="leading" secondItem="M5G-4c-fCZ" secondAttribute="trailing" constant="8" id="9De-Jg-iuI"/>
                             <constraint firstItem="PfC-Cg-8jv" firstAttribute="top" secondItem="M5G-4c-fCZ" secondAttribute="bottom" constant="16" id="BSZ-eN-Wm5"/>
@@ -614,6 +622,9 @@
                             <constraint firstAttribute="trailing" secondItem="z3N-Sd-A7W" secondAttribute="trailing" constant="16" id="SRU-un-wJT"/>
                             <constraint firstItem="MS4-bc-5TD" firstAttribute="top" secondItem="PfC-Cg-8jv" secondAttribute="bottom" constant="2" id="Vx3-a8-Mxz"/>
                             <constraint firstItem="enq-4F-uLI" firstAttribute="leading" secondItem="QsI-1F-xaq" secondAttribute="leading" id="cBh-c5-8Vc"/>
+                            <constraint firstItem="MS4-bc-5TD" firstAttribute="leading" secondItem="nEA-U4-TVU" secondAttribute="trailing" constant="8" id="cIG-Co-3hk"/>
+                            <constraint firstItem="nEA-U4-TVU" firstAttribute="top" secondItem="PfC-Cg-8jv" secondAttribute="bottom" constant="14" id="cWz-ck-Z5a"/>
+                            <constraint firstItem="MS4-bc-5TD" firstAttribute="bottom" secondItem="nEA-U4-TVU" secondAttribute="bottom" id="jVI-G4-bik"/>
                             <constraint firstItem="M5G-4c-fCZ" firstAttribute="top" secondItem="Nrr-gQ-ZKT" secondAttribute="bottom" constant="8" id="oac-aO-wN2"/>
                             <constraint firstAttribute="trailing" secondItem="PfC-Cg-8jv" secondAttribute="trailing" constant="16" id="tWP-iu-8lO"/>
                             <constraint firstItem="PfC-Cg-8jv" firstAttribute="leading" secondItem="dqe-zP-kBm" secondAttribute="leading" constant="16" id="xDr-rD-em1"/>
@@ -621,6 +632,7 @@
                     </view>
                     <connections>
                         <outlet property="buttonBottomConstraint" destination="RVm-KD-lHa" id="5Mg-UW-0n3"/>
+                        <outlet property="countdownLabel" destination="nEA-U4-TVU" id="rer-Fu-v5Q"/>
                         <outlet property="nameLabel" destination="QsI-1F-xaq" id="PEQ-IF-Y3i"/>
                         <outlet property="profilePicImageView" destination="M5G-4c-fCZ" id="h9R-wA-Yak"/>
                         <outlet property="shareButton" destination="MS4-bc-5TD" id="GZK-hs-cjL"/>

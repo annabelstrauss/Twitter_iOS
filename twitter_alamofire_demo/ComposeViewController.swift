@@ -13,6 +13,19 @@ protocol ComposeViewControllerDelegate: class {
     func didPostTweet(post: Tweet)
 }
 
+//========== THIS IS TO CONVERT HEX COLORS TO RGB ========== 
+extension UIColor {
+    convenience init(hex: Int) {
+        let components = (
+            R: CGFloat((hex >> 16) & 0xff) / 255,
+            G: CGFloat((hex >> 08) & 0xff) / 255,
+            B: CGFloat((hex >> 00) & 0xff) / 255
+        )
+        
+        self.init(red: components.R, green: components.G, blue: components.B, alpha: 1)
+    }
+}
+
 class ComposeViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var profilePicImageView: UIImageView!
@@ -21,6 +34,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var tweetTextView: RSKPlaceholderTextView!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var buttonBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var countdownLabel: UILabel!
     
     weak var delegate: ComposeViewControllerDelegate?
 
@@ -46,6 +60,23 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         profilePicImageView.layer.cornerRadius = profilePicImageView.frame.size.width / 2;
         profilePicImageView.clipsToBounds = true;
     
+        //set color of the share button
+        shareButton.backgroundColor = UIColor(hex:0x44A2FF)
+    }
+    
+    //========== COUNTS DOWN CHARACTERS (max 140) ==========
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let newLength = tweetTextView.text.characters.count + text.characters.count - range.length
+        if(newLength <= 140){
+            shareButton.backgroundColor = UIColor(hex:0x44A2FF)
+            shareButton.isEnabled = true
+            self.countdownLabel.text = "\(140 - newLength)"
+            return true
+        }else{
+            shareButton.isEnabled = false
+            shareButton.backgroundColor = UIColor(hex:0xB0E2FF)
+            return false
+        }
     }
     
     //========== FOR KEYBOARD AUTO LAYOUT ==========
