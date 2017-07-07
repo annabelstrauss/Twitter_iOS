@@ -17,6 +17,8 @@ class User {
     var id: Int64
     var profilePicString: String?
     var profilePicURL: URL?
+    var backgroundPicString: String?
+    var backgroundPicURL: URL?
     var favCount: Int?
     
     // For user persistance
@@ -62,6 +64,9 @@ class User {
         id = dictionary["id"] as! Int64
         profilePicString = dictionary["profile_image_url_https"] as? String
         profilePicURL = URL(string: profilePicString!)
+        if let backgroundPicString = dictionary["profile_background_image_url_https"] as? String {
+            backgroundPicURL = URL(string: backgroundPicString)
+        }
         favCount = dictionary["favourites_count"] as? Int
 
     }

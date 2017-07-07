@@ -13,6 +13,7 @@ import TTTAttributedLabel
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var profilePicImageView: UIImageView!
+    @IBOutlet weak var backgroundPicImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var followingCountLabel: UILabel!
@@ -32,6 +33,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         tweetsTableView.dataSource = self
         tweetsTableView.delegate = self
+        tweetsTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         tweetsTableView.rowHeight = UITableViewAutomaticDimension
         tweetsTableView.estimatedRowHeight = 100
@@ -44,6 +46,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         followersCountLabel.text = String(followersCount)
         let profpicURL = user.profilePicURL
         profilePicImageView.af_setImage(withURL: profpicURL!)
+        let backgroundPicURL = user.backgroundPicURL
+        backgroundPicImageView.af_setImage(withURL: backgroundPicURL!)
         
         //make profile pic circular
         profilePicImageView.layer.cornerRadius = profilePicImageView.frame.size.width / 2;
