@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate {
+class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate, TweetCellDelegate {
     
     var tweets: [Tweet] = []
     var refreshControl: UIRefreshControl!
@@ -44,6 +44,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
         
         cell.tweet = tweets[indexPath.row]
+        
+        cell.delegate = self
         
         return cell
     }
@@ -85,15 +87,31 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         fetchTweets()
     }
     
+    //inserts tweet that was just created into the home table view
     func didPostTweet(post: Tweet) {
         tweets.insert(post, at: 0)
         tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let composeViewController = segue.destination as! ComposeViewController //tell it its destination
-        composeViewController.delegate = self
+        if segue.identifier == "composeSegue" {
+            let composeViewController = segue.destination as! ComposeViewController //tell it its destination
+            composeViewController.delegate = self
+        }
+        else if segue.identifier == "profileSegue" {
+            let user = sender as! User
+            let profileViewController = segue.destination as! ProfileViewController //tell it its destination
+            profileViewController.user = user
+        }
     }
+    
+    //required method so you can tap on a user to see their user profile
+    func tweetCell(_ tweetCell: TweetCell, didTap user: User) {
+        // Perform segue to profile view controller
+        performSegue(withIdentifier: "profileSegue", sender: user)
+    }
+    
+    
     
     
     

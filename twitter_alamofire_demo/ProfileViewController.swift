@@ -26,13 +26,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if user == nil {
+            user = User.current
+        }
+        
         tweetsTableView.dataSource = self
         tweetsTableView.delegate = self
         
         tweetsTableView.rowHeight = UITableViewAutomaticDimension
         tweetsTableView.estimatedRowHeight = 100
         
-        user = User.current!
         nameLabel.text = user.name
         usernameLabel.text = user.screenName
         followingCount = user.friendsCount
@@ -48,6 +51,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         fetchUserTweets()
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -67,7 +72,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func fetchUserTweets() {
-        APIManager.shared.getUserTweets { (tweets, error) in
+        APIManager.shared.getUserTweets(user!) { (tweets, error) in
             if let tweets = tweets {
                 self.userTweets = tweets
                 self.tweetsTableView.reloadData()
@@ -77,8 +82,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         
     }//close fetchTweets
-    
-
     
 
 }//close class

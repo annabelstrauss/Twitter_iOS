@@ -197,15 +197,20 @@ class APIManager: SessionManager {
     }//close composeTweet
     
     // MARK: TODO: Get User Timeline (profile page)
-    func getUserTweets(completion: @escaping ([Tweet]?, Error?) -> ()) {
+    func getUserTweets(_ user: User, completion: @escaping ([Tweet]?, Error?) -> ()) {
         
-        let baseURL = "https://api.twitter.com/1.1/statuses/user_timeline.json?"
-        let userNameString = "screen_name=" + (User.current?.screenName)!
-        print(userNameString)
-        let countString = "&count=20"
-        let fullString = baseURL + userNameString + countString
+//        let baseURL = "https://api.twitter.com/1.1/statuses/user_timeline.json?"
+//        let userNameString = "screen_name=" + (User.current?.screenName)!
+//        print(userNameString)
+//        let countString = "&count=20"
+//        let fullString = baseURL + userNameString + countString
         
-        request(URL(string: fullString)!, method: .get)
+        let parameters = ["screen_name": user.screenName!]
+        print("😄")
+        print(user.screenName)
+        let urlString = "https://api.twitter.com/1.1/statuses/user_timeline.json"
+        
+        request(urlString, method: .get, parameters: parameters)
             .validate()
             .responseJSON { (response) in
                 guard response.result.isSuccess else {
@@ -218,6 +223,10 @@ class APIManager: SessionManager {
                     completion(nil, error)
                     return
                 }
+                
+                let data = NSKeyedArchiver.archivedData(withRootObject: tweetDictionaries)
+                UserDefaults.standard.set(data, forKey: "hometimeline_tweets")
+                UserDefaults.standard.synchronize()
                 
                 let tweets = tweetDictionaries.flatMap({ (dictionary) -> Tweet in
                     Tweet(dictionary: dictionary)

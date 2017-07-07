@@ -11,6 +11,11 @@ import Alamofire
 import AlamofireImage
 import TTTAttributedLabel
 
+protocol TweetCellDelegate: class {
+    // Add required methods the delegate needs to implement
+    func tweetCell(_ tweetCell: TweetCell, didTap user: User)
+}
+
 class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
     
     @IBOutlet weak var tweetTextLabel: TTTAttributedLabel!
@@ -26,6 +31,7 @@ class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
     @IBOutlet weak var likeCountLabel: UILabel!
     @IBOutlet weak var mediaImageView: UIImageView!
     @IBOutlet weak var topStackConstraint: NSLayoutConstraint!
+    weak var delegate: TweetCellDelegate?
     
     var tweet: Tweet! {
         didSet {
@@ -69,6 +75,11 @@ class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
         //make profile pic circular
         profilePicImageView.layer.cornerRadius = profilePicImageView.frame.size.width / 2;
         profilePicImageView.clipsToBounds = true;
+        
+        //be able to tap on prof pic to go to that user's profile page
+        let profileTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapUserProfile(_:)))
+        profilePicImageView.addGestureRecognizer(profileTapGestureRecognizer)
+        profilePicImageView.isUserInteractionEnabled = true
     }
     
     public func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
@@ -158,7 +169,10 @@ class TweetCell: UITableViewCell, TTTAttributedLabelDelegate {
         
     }//close didTapLike
     
-    
+    func didTapUserProfile(_ sender: UITapGestureRecognizer) {
+        // Call method on delegate
+        delegate?.tweetCell(self, didTap: tweet.user)
+    }
     
     
     
